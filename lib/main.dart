@@ -15,11 +15,13 @@ class NotesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       darkTheme: ThemeData(
-        scaffoldBackgroundColor: Color(0xff333739),
-        appBarTheme: AppBarTheme(
+
+        scaffoldBackgroundColor: const Color(0xff333739),
+        appBarTheme: const AppBarTheme(
           color: Colors.transparent,
           elevation: 0,
         ),
+        fontFamily: 'Poppins',
       ),
       themeMode: ThemeMode.dark,
       home: const NotesView(),
