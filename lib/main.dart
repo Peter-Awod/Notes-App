@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/views/notes_view.dart';
 
+import 'shared/constants.dart';
+
 void main() {
   runApp(const NotesApp());
 }
@@ -16,7 +18,7 @@ class NotesApp extends StatelessWidget {
       title: 'Flutter Demo',
       darkTheme: ThemeData(
 
-        scaffoldBackgroundColor: const Color(0xff333739),
+        scaffoldBackgroundColor:  kThemeColor,
         appBarTheme: const AppBarTheme(
           color: Colors.transparent,
           elevation: 0,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../shared/constants.dart';
+import '../widgets/add_new_note.dart';
 import 'notes_body_view.dart';
 
 class NotesView extends StatelessWidget {
@@ -12,12 +14,22 @@ class NotesView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         foregroundColor: const Color(0xff52397D),
         backgroundColor: const Color(0xffEBDDFF),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            backgroundColor: kThemeColor,
+            shape: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            context: context,
+            builder: (context) {
+              return const AddNewNote();
+            },
+          );
+        },
         child: Icon(
           Icons.add_outlined,
           size: 32,
         ),
-
       ),
     );
   }
