@@ -5,15 +5,17 @@ import '../shared/constants.dart';
 
 class CustomTextField extends StatelessWidget
 {
-  String hintText;
-  int maxLines;
+ final String hintText;
+ final int maxLines;
 
-  CustomTextField({super.key, required this.hintText, this.maxLines = 1});
+  const CustomTextField({super.key, required this.hintText, this.maxLines = 1});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: const TextStyle(color: kPrimaryColor),
       cursorColor: kPrimaryColor,
+      keyboardType: TextInputType.text,
       maxLines: maxLines,
       decoration: InputDecoration(
         hintText: hintText,

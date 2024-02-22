@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/views/edit_view.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({super.key});
@@ -49,15 +50,35 @@ class NoteCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.only(
-                end: 24,
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: 16,
               ),
-              child: Text(
-                'Feb 17, 2024',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.black.withOpacity(0.7),
-                ),
+              child: Row(
+                children: [
+                  Text(
+                    'Feb 17, 2024',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black.withOpacity(0.7),
+                    ),
+                  ),
+                  Spacer(),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditView(),
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.edit_note_outlined,
+                      color: Colors.black.withOpacity(0.7),
+                      size: 32,
+                    ),
+                  )
+                ],
               ),
             ),
           ],
