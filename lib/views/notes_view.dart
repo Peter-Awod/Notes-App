@@ -16,6 +16,7 @@ class NotesView extends StatelessWidget {
         backgroundColor: const Color(0xffEBDDFF),
         onPressed: () {
           showModalBottomSheet(
+            isScrollControlled: true,
             backgroundColor: kThemeColor,
             shape: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
