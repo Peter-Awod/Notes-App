@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_states.dart';
 
@@ -14,23 +13,24 @@ class AddNewNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context)=>AddNoteCubit(),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
-        child: BlocConsumer<AddNoteCubit, AddNoteStates>(
-          listener: (context, state) {
-            if(state is AddNoteFailureState){
-              print('Failed ${state.error}');
-            }
-            if(state is AddNoteSuccessState){
-              Navigator.pop(context);
-            }
-          },
-          builder: (context, state) {
-            return ModalProgressHUD(
-                inAsyncCall: state is AddNoteLoadingState ? true : false,
-                child: SingleChildScrollView(child: AddNoteForm()));
-          },
-        ),
+      child: BlocConsumer<AddNoteCubit, AddNoteStates>(
+        listener: (context, state) {
+          if(state is AddNoteFailureState){
+            print('Failed ${state.error}');
+          }
+          if(state is AddNoteSuccessState){
+            Navigator.pop(context);
+          }
+        },
+        builder: (context, state) {
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoadingState ? true :false ,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
+              child: SingleChildScrollView(child: AddNoteForm()),
+            ),
+          );
+        },
       ),
     );
   }
