@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubit/get_notes_cubit/get_notes_cubit.dart';
 
 import '../shared/constants.dart';
 import '../widgets/add_new_note.dart';
@@ -9,27 +11,30 @@ class NotesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const NotesBodyView(),
-      floatingActionButton: FloatingActionButton(
-        foregroundColor: const Color(0xff52397D),
-        backgroundColor: const Color(0xffEBDDFF),
-        onPressed: () {
-          showModalBottomSheet(
-            isScrollControlled: true,
-            backgroundColor: kThemeColor,
-            shape: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            context: context,
-            builder: (context) {
-              return const AddNewNote();
-            },
-          );
-        },
-        child: const Icon(
-          Icons.add_outlined,
-          size: 32,
+    return BlocProvider(
+      create: (context) => GetNotesCubit()..getAllNotes(),
+      child: Scaffold(
+        body: const NotesBodyView(),
+        floatingActionButton: FloatingActionButton(
+          foregroundColor: const Color(0xff52397D),
+          backgroundColor: const Color(0xffEBDDFF),
+          onPressed: () {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              backgroundColor: kThemeColor,
+              shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              context: context,
+              builder: (context) {
+                return const AddNewNote();
+              },
+            );
+          },
+          child: const Icon(
+            Icons.add_outlined,
+            size: 32,
+          ),
         ),
       ),
     );
