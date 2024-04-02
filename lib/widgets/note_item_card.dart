@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_view.dart';
 
 class NoteCard extends StatelessWidget {
-  const NoteCard({super.key});
-
+  const NoteCard({super.key, required this.noteModel});
+final NoteModel noteModel;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,7 +21,7 @@ class NoteCard extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                'Qoutes',
+                noteModel.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -31,7 +32,7 @@ class NoteCard extends StatelessWidget {
               subtitle: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(
-                  'Sometimes the dreamers finally wake up',
+                  noteModel.subTitle,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -56,7 +57,7 @@ class NoteCard extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'Feb 17, 2024',
+                    noteModel.date,
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.black.withOpacity(0.7),

@@ -21,7 +21,7 @@ class NotesListViewBuilder extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
-            return const NoteCard();
+            return NoteCard(noteModel: notes[index],);
           },
 
         );
