@@ -9,10 +9,12 @@ class GetNotesCubit extends Cubit<GetNoteStates> {
 
   static GetNotesCubit get(context) => BlocProvider.of(context);
 
+  List<NoteModel>?notes;
   getAllNotes() async {
     try {
       var notesBox = Hive.box<NoteModel>(kNotesBox);
-      List<NoteModel> notesList = notesBox.values.toList();
+      notes=notesBox.values.toList();
+      List<NoteModel> notesList = notes!;
       emit(GetNoteSuccessState(notesList));
     } catch (error) {
       emit(
