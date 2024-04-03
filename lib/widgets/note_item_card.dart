@@ -42,7 +42,9 @@ final NoteModel noteModel;
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  noteModel.delete();
+                },
                 icon: Icon(
                   Icons.delete,
                   color: Colors.black.withOpacity(0.7),
