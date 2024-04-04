@@ -19,23 +19,25 @@ class _NotesBodyViewState extends State<NotesBodyView> {
     BlocProvider.of<GetNotesCubit>(context).getAllNotes();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           CustomAppBar(
             title: 'Notes',
             icon: Icons.search_outlined,
+            onPressed: () {},
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Expanded(child: NotesListViewBuilder()),
+          const Expanded(child: NotesListViewBuilder()),
         ],
       ),
     );

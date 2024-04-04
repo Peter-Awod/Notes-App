@@ -6,7 +6,9 @@ import 'package:notes_app/views/edit_view.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({super.key, required this.noteModel});
-final NoteModel noteModel;
+
+  final NoteModel noteModel;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -74,7 +76,9 @@ final NoteModel noteModel;
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => EditView(),
+                          builder: (context) => EditView(
+                            noteModel: noteModel,
+                          ),
                         ),
                       );
                     },
