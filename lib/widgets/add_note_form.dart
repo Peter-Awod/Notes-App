@@ -5,6 +5,7 @@ import 'package:notes_app/cubit/add_note_cubit/add_note_states.dart';
 import 'package:notes_app/models/note_model.dart';
 
 import '../shared/components/date_format.dart';
+import 'colors/colors_list_view.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
@@ -47,9 +48,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
               subTitle = value;
             },
           ),
-          const SizedBox(
-            height: 100,
-          ),
+          const ColorListView(),
           BlocConsumer<AddNoteCubit, AddNoteStates>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -58,7 +57,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
               } else {
                 return CustomButton(
                   onPressed: () {
-
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                       var noteModel = NoteModel(
