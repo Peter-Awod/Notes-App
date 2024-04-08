@@ -13,7 +13,7 @@ class NoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-      color: Color(0xffFFCC80),
+      color: Color(noteModel.color),
       child: Padding(
         padding: const EdgeInsetsDirectional.only(
           top: 24,
