@@ -37,7 +37,7 @@ class _EditViewBodyState extends State<EditViewBody> {
       child: Column(
         children: [
           const SizedBox(
-            height: 40,
+            height: 50,
           ),
           CustomAppBar(
             title: 'Edit Note',
