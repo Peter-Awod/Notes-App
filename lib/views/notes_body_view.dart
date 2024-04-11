@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/get_notes_cubit/get_notes_cubit.dart';
-import 'package:notes_app/widgets/custom_app_bar.dart';
+import 'package:notes_app/widgets/custom/custom_app_bar.dart';
 
 import 'notes_list_view_builder.dart';
 

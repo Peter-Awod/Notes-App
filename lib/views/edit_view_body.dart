@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/get_notes_cubit/get_notes_cubit.dart';
 
 import '../models/note_model.dart';
-import '../widgets/custom_app_bar.dart';
-import '../widgets/custom_text_field.dart';
+import '../widgets/custom/custom_app_bar.dart';
+import '../widgets/custom/custom_text_field.dart';
 
 class EditViewBody extends StatefulWidget {
   const EditViewBody({
@@ -70,7 +70,7 @@ class _EditViewBodyState extends State<EditViewBody> {
           Expanded(
             child: CustomTextField(
               hintText: 'Content',
-              maxLines: 1000,
+              maxLines: 5000,
               onChanged: (value) {
                 content = value;
                 contentController.text = value;

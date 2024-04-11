@@ -1,12 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_states.dart';
 import 'package:notes_app/models/note_model.dart';
 
-import '../shared/components/date_format.dart';
-import 'custom_button.dart';
-import 'custom_text_field.dart';
+import '../../shared/components/date_format.dart';
+import '../custom/custom_button.dart';
+import '../custom/custom_text_field.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -40,14 +41,16 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 8,
           ),
-          CustomTextField(
-            hintText: 'Content',
-            maxLines: 5,
-            onSaved: (value) {
-              subTitle = value;
-            },
+          Expanded(
+            child: CustomTextField(
+              hintText: 'Content',
+              maxLines: 5000,
+              onSaved: (value) {
+                subTitle = value;
+              },
+            ),
           ),
-         // const ColorListView(),
+
           const SizedBox(height: 20 ,),
           BlocConsumer<AddNoteCubit, AddNoteStates>(
             listener: (context, state) {},
@@ -63,7 +66,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                           title: title!,
                           subTitle: subTitle!,
                           date: dateTimeFormat(dateTime: DateTime.now()),
-                          color: const Color(0xffFFCC80).value);
+                          color: BlocProvider.of<AddNoteCubit>(context).randomColor().value);
                       BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                     } else {
                       autovalidateMode = AutovalidateMode.always;

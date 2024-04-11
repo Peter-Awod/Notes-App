@@ -33,7 +33,7 @@ class NotesApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         darkTheme: ThemeData(
-          scaffoldBackgroundColor: kThemeColor,
+          scaffoldBackgroundColor: Colors.black,
           appBarTheme: const AppBarTheme(
             color: Colors.transparent,
             elevation: 0,

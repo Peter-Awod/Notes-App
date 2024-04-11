@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_states.dart';
 
-import '../cubit/get_notes_cubit/get_notes_cubit.dart';
+import '../../cubit/get_notes_cubit/get_notes_cubit.dart';
 import 'add_note_form.dart';
 
 class AddNewNote extends StatelessWidget {
@@ -17,7 +18,9 @@ class AddNewNote extends StatelessWidget {
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(
         listener: (context, state) {
           if (state is AddNoteFailureState) {
-            print('Failed ${state.error}');
+            if (kDebugMode) {
+              print('Failed ${state.error}');
+            }
           }
           if (state is AddNoteSuccessState) {
             BlocProvider.of<GetNotesCubit>(context).getAllNotes();
@@ -33,8 +36,8 @@ class AddNewNote extends StatelessWidget {
                   start: 16.0,
                   end: 16,
                   bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+              child: const Padding(
+                padding:  EdgeInsets.symmetric(vertical: 20),
                 child: SingleChildScrollView(child: AddNoteForm()),
               ),
             ),
