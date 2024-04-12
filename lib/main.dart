@@ -7,7 +7,6 @@ import 'package:notes_app/shared/constants.dart';
 
 import 'models/note_model.dart';
 import 'views/notes_view.dart';
-import 'widgets/test_dialog.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
