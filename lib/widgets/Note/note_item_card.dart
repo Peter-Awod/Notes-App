@@ -32,15 +32,11 @@ class NoteCard extends StatelessWidget {
               context: context,
               dialogType: DialogType.warning,
               animType: AnimType.scale,
-              // customHeader: Icon(
-              //   Icons.face,
-              //   size: 50,
-              // ),
+
               headerAnimationLoop: false,
 
               title: 'Warning',
               desc: 'Are you sure you want to delete the note',
-
 
               btnOk: Row(
                 children: [
@@ -54,19 +50,16 @@ class NoteCard extends StatelessWidget {
                   ElevatedButton(
                     child: const Text('Delete'),
                     onPressed: () {
-                          noteModel.delete();
-                          Navigator.of(context).pop();
+                      noteModel.delete();
+                      Navigator.of(context).pop();
 
-                          BlocProvider.of<GetNotesCubit>(context).getAllNotes();
+                      BlocProvider.of<GetNotesCubit>(context).getAllNotes();
                     },
                   ),
                 ],
               ),
               //this is ignored
-
             ).show();
-
-
           },
           padding: EdgeInsets.zero,
           child: Card(
@@ -120,16 +113,11 @@ class NoteCard extends StatelessWidget {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
         ),
-
       ],
     );
   }
-
 }
-
-

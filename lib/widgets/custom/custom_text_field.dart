@@ -31,7 +31,7 @@ class CustomTextFormField extends StatelessWidget {
         }
       },
       controller: textController,
-      style: const TextStyle(color: kThemeColor),
+      style: const TextStyle(color: Colors.white),
       cursorColor: kThemeColor,
       keyboardType: TextInputType.text,
       maxLines: maxLines,
