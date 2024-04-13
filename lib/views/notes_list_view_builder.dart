@@ -17,6 +17,7 @@ class NotesListViewBuilder extends StatelessWidget {
         List<NoteModel> notes =
             BlocProvider.of<GetNotesCubit>(context).notes ?? [];
 
+        notes=notes.reversed.toList();
         return SingleChildScrollView(
           child: MasonryView(
             listOfItem: notes,
