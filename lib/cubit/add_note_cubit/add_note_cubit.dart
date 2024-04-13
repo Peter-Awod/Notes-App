@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import '../../models/note_model.dart';
+import '../../shared/colors.dart';
 import '../../shared/constants.dart';
 import 'add_note_states.dart';
 
