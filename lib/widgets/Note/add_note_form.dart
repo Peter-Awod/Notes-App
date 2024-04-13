@@ -3,10 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_states.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/custom/custom_text_field.dart';
+import 'package:notes_app/shared/components/date_format.dart';
 
-import '../../shared/components/date_format.dart';
-import '../custom/custom_button.dart';
-import '../custom/custom_text_field.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -23,60 +22,106 @@ class _AddNoteFormState extends State<AddNoteForm> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   String? title, subTitle;
+  var titleController = TextEditingController();
+  var contentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      autovalidateMode: autovalidateMode,
-      child: Column(
-        children: [
-          CustomTextField(
-            hintText: 'Title',
-            onSaved: (value) {
-              title = value;
-            },
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Expanded(
-            child: CustomTextField(
-              hintText: 'Content',
-              maxLines: 5000,
-              onSaved: (value) {
-                subTitle = value;
-              },
-            ),
-          ),
+    return BlocConsumer<AddNoteCubit,AddNoteStates>(
+      listener: (context, state) {
 
-          const SizedBox(height: 20 ,),
-          BlocConsumer<AddNoteCubit, AddNoteStates>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              if (state is AddNoteLoadingState) {
-                return const LinearProgressIndicator();
-              } else {
-                return CustomButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      var noteModel = NoteModel(
-                          title: title!,
-                          subTitle: subTitle!,
-                          date: dateTimeFormat(dateTime: DateTime.now()),
-                          color: BlocProvider.of<AddNoteCubit>(context).randomColor().value);
-                      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                    }
-                  },
-                );
-              }
-            },
-          ),
-        ],
-      ),
+      },
+      builder: (context, state) {
+        if (state is AddNoteLoadingState) {
+          return const LinearProgressIndicator();
+        } else {
+          return Scaffold(
+            appBar: _buildAppBar(),
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
+                key: formKey,
+                autovalidateMode: autovalidateMode,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomTextFormField(
+                      hintText: 'Title',
+                      textController: titleController,
+                      onSaved: (value) {
+                        title = value;
+                      },
+                      onChanged: (value) {
+                        title = value;
+                        titleController.text = value;
+                        setState(() {}); // Update UI when title changes
+                      },
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      dateTimeFormat(
+                        dateTime: DateTime.now(),
+                      ),
+                      style: TextStyle(color: Colors.grey.shade600),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Expanded(
+                      child: CustomTextFormField(
+                        hintText: 'Start Typing',
+                        maxLines: 5000,
+                        onSaved: (value) {
+                          subTitle = value;
+                        },
+                        onChanged: (value) {
+                          subTitle = value;
+                          contentController.text = value;
+                          setState(() {}); // Update UI when subtitle changes
+                        },
+                        textController: contentController,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+      },
     );
+  }
+
+  PreferredSizeWidget _buildAppBar() {
+    if (title != null && subTitle != null && title!.isNotEmpty && subTitle!.isNotEmpty) {
+      return AppBar(
+        actions: [
+          IconButton( onPressed: () {
+            if (formKey.currentState!.validate()) {
+              formKey.currentState!.save();
+              var noteModel = NoteModel(
+                title: title!,
+                subTitle: subTitle!,
+                date: dateTimeFormat(dateTime: DateTime.now()),
+                color: BlocProvider.of<AddNoteCubit>(context)
+                    .randomColor()
+                    .value,
+              );
+              BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+            } else {
+              autovalidateMode = AutovalidateMode.always;
+            }
+          }, icon: const Icon(Icons.check_outlined,))
+        ],
+      );
+    } else {
+      return AppBar();
+    }
   }
 }

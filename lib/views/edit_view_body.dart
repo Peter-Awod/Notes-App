@@ -56,7 +56,7 @@ class _EditViewBodyState extends State<EditViewBody> {
           const SizedBox(
             height: 32,
           ),
-          CustomTextField(
+          CustomTextFormField(
             hintText: 'Title',
             onChanged: (value) {
               title = value;
@@ -68,7 +68,7 @@ class _EditViewBodyState extends State<EditViewBody> {
             height: 10,
           ),
           Expanded(
-            child: CustomTextField(
+            child: CustomTextFormField(
               hintText: 'Content',
               maxLines: 5000,
               onChanged: (value) {

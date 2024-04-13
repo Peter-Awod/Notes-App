@@ -13,29 +13,23 @@ class AddNewNoteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-       create: (context) => AddNoteCubit(),
-        child: BlocConsumer<AddNoteCubit,AddNoteStates>(
-          listener: (context, state) {
-            if (state is AddNoteFailureState) {
-              if (kDebugMode) {
-                print('Failed ${state.error}');
-              }
+      create: (context) => AddNoteCubit(),
+      child: BlocConsumer<AddNoteCubit, AddNoteStates>(
+        listener: (context, state) {
+          if (state is AddNoteFailureState) {
+            if (kDebugMode) {
+              print('Failed ${state.error}');
             }
-            if (state is AddNoteSuccessState) {
-              BlocProvider.of<GetNotesCubit>(context).getAllNotes();
+          }
+          if (state is AddNoteSuccessState) {
+            BlocProvider.of<GetNotesCubit>(context).getAllNotes();
 
-              Navigator.pop(context);
-            }
-          },
-          builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(),
-              body: const Padding(
-                padding:  EdgeInsets.all(20.0),
-                child:  AddNoteForm(),
-              ),
-            );
-          },
-        ));
+            Navigator.pop(context);
+          }
+        },
+        builder: (context, state) {
+          return  const AddNoteForm();
+        },
+      ),);
   }
 }
