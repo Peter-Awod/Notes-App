@@ -97,31 +97,70 @@ class _AddNoteFormState extends State<AddNoteForm> {
       },
     );
   }
-
   PreferredSizeWidget _buildAppBar() {
-    if (title != null && subTitle != null && title!.isNotEmpty && subTitle!.isNotEmpty) {
+    if ( subTitle != null  && subTitle!.isNotEmpty) {
       return AppBar(
         actions: [
-          IconButton( onPressed: () {
-            if (formKey.currentState!.validate()) {
-              formKey.currentState!.save();
-              var noteModel = NoteModel(
-                title: title!,
-                subTitle: subTitle!,
-                date: dateTimeFormat(dateTime: DateTime.now()),
-                color: BlocProvider.of<AddNoteCubit>(context)
-                    .randomColor()
-                    .value,
-              );
-              BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-            } else {
-              autovalidateMode = AutovalidateMode.always;
-            }
-          }, icon: const Icon(Icons.check_outlined,))
+          IconButton(
+            onPressed: () {
+              if (title == null || title!.isEmpty) {
+                title = 'Untitled';
+                titleController.text = title!;
+              }
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+                if (title == null || title!.isEmpty) {
+                  title = 'Untitled';
+                  titleController.text = title!;
+                }
+                var noteModel = NoteModel(
+                  title: title!,
+                  subTitle: subTitle!,
+                  date: dateTimeFormat(dateTime: DateTime.now()),
+                  color: BlocProvider.of<AddNoteCubit>(context)
+                      .randomColor()
+                      .value,
+                );
+                BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+              }
+            },
+            icon: const Icon(Icons.check_outlined),
+          )
         ],
       );
-    } else {
-      return AppBar();
     }
+       else {
+        return AppBar();
+      }
+
   }
+
+  // PreferredSizeWidget _buildAppBar() {
+  //   if (title != null && subTitle != null && title!.isNotEmpty && subTitle!.isNotEmpty) {
+  //     return AppBar(
+  //       actions: [
+  //         IconButton( onPressed: () {
+  //           if (formKey.currentState!.validate()) {
+  //             formKey.currentState!.save();
+  //             var noteModel = NoteModel(
+  //               title: title!,
+  //               subTitle: subTitle!,
+  //               date: dateTimeFormat(dateTime: DateTime.now()),
+  //               color: BlocProvider.of<AddNoteCubit>(context)
+  //                   .randomColor()
+  //                   .value,
+  //             );
+  //             BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+  //           } else {
+  //             autovalidateMode = AutovalidateMode.always;
+  //           }
+  //         }, icon: const Icon(Icons.check_outlined,))
+  //       ],
+  //     );
+  //   } else {
+  //     return AppBar();
+  //   }
+  // }
 }
