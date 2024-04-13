@@ -6,7 +6,6 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom/custom_text_field.dart';
 import 'package:notes_app/shared/components/date_format.dart';
 
-
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
     super.key,
@@ -23,14 +22,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
   String? title, subTitle;
   var titleController = TextEditingController();
-  var contentController = TextEditingController();
+  var subTitleController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddNoteCubit,AddNoteStates>(
-      listener: (context, state) {
-
-      },
+    return BlocConsumer<AddNoteCubit, AddNoteStates>(
+      listener: (context, state) {},
       builder: (context, state) {
         if (state is AddNoteLoadingState) {
           return const LinearProgressIndicator();
@@ -78,16 +75,15 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         },
                         onChanged: (value) {
                           subTitle = value;
-                          contentController.text = value;
+                          subTitleController.text = value;
                           setState(() {}); // Update UI when subtitle changes
                         },
-                        textController: contentController,
+                        textController: subTitleController,
                       ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-
                   ],
                 ),
               ),
@@ -97,70 +93,80 @@ class _AddNoteFormState extends State<AddNoteForm> {
       },
     );
   }
+
   PreferredSizeWidget _buildAppBar() {
-    if ( subTitle != null  && subTitle!.isNotEmpty) {
+    if (subTitle != null && subTitle!.isNotEmpty) {
       return AppBar(
-        actions: [
-          IconButton(
+        leading: Padding(
+          padding: const EdgeInsets.all(20),
+          child: IconButton(
             onPressed: () {
-              if (title == null || title!.isEmpty) {
-                title = 'Untitled';
-                titleController.text = title!;
-              }
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                if (title == null || title!.isEmpty) {
-                  title = 'Untitled';
-                  titleController.text = title!;
-                }
-                var noteModel = NoteModel(
-                  title: title!,
-                  subTitle: subTitle!,
-                  date: dateTimeFormat(dateTime: DateTime.now()),
-                  color: BlocProvider.of<AddNoteCubit>(context)
-                      .randomColor()
-                      .value,
-                );
-                BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-              }
+              Navigator.pop(context);
             },
-            icon: const Icon(Icons.check_outlined),
-          )
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Colors.white.withOpacity(0.05),
+              ),
+              child: IconButton(
+                icon: const Icon(
+                  Icons.check_outlined,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  if (title == null || title!.isEmpty) {
+                    title = 'Untitled';
+                    titleController.text = title!;
+                  }
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    if (title == null || title!.isEmpty) {
+                      title = 'Untitled';
+                      titleController.text = title!;
+                    }
+                    var noteModel = NoteModel(
+                      title: title!,
+                      subTitle: subTitle!,
+                      date: dateTimeFormat(dateTime: DateTime.now()),
+                      color: BlocProvider.of<AddNoteCubit>(context)
+                          .randomColor()
+                          .value,
+                    );
+                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                  }
+                },
+
+              ),
+            ),
+          ),
         ],
       );
+    } else {
+      return AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
     }
-       else {
-        return AppBar();
-      }
-
   }
-
-  // PreferredSizeWidget _buildAppBar() {
-  //   if (title != null && subTitle != null && title!.isNotEmpty && subTitle!.isNotEmpty) {
-  //     return AppBar(
-  //       actions: [
-  //         IconButton( onPressed: () {
-  //           if (formKey.currentState!.validate()) {
-  //             formKey.currentState!.save();
-  //             var noteModel = NoteModel(
-  //               title: title!,
-  //               subTitle: subTitle!,
-  //               date: dateTimeFormat(dateTime: DateTime.now()),
-  //               color: BlocProvider.of<AddNoteCubit>(context)
-  //                   .randomColor()
-  //                   .value,
-  //             );
-  //             BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-  //           } else {
-  //             autovalidateMode = AutovalidateMode.always;
-  //           }
-  //         }, icon: const Icon(Icons.check_outlined,))
-  //       ],
-  //     );
-  //   } else {
-  //     return AppBar();
-  //   }
-  // }
 }
