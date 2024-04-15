@@ -22,13 +22,13 @@ class EditViewBody extends StatefulWidget {
 class _EditViewBodyState extends State<EditViewBody> {
   String? title, subTitle;
   late TextEditingController titleController;
-  late TextEditingController contentController;
+  late TextEditingController subTitleController;
 
   @override
   void initState() {
     super.initState();
     titleController = TextEditingController(text: widget.noteModel.title);
-    contentController = TextEditingController(text: widget.noteModel.subTitle);
+    subTitleController = TextEditingController(text: widget.noteModel.subTitle);
     title = widget.noteModel.title;
     subTitle = widget.noteModel.subTitle;
   }
@@ -43,22 +43,6 @@ class _EditViewBodyState extends State<EditViewBody> {
           const SizedBox(
             height: 50,
           ),
-          // CustomAppBar(
-          //   title: 'Edit Note',
-          //   icon: Icons.check_outlined,
-          //   onPressed: () {
-          //     if (title != null) {
-          //       widget.noteModel.title = title!;
-          //     }
-          //     // or another way
-          //     if (subTitle != null) {
-          //       widget.noteModel.subTitle = subTitle!;
-          //     }
-          //     widget.noteModel.save();
-          //     BlocProvider.of<GetNotesCubit>(context).getAllNotes();
-          //     Navigator.pop(context);
-          //   },
-          // ),
           CustomAppBar(
             title: 'Edit Note',
             icon: Icons.check_outlined,
@@ -80,11 +64,9 @@ class _EditViewBodyState extends State<EditViewBody> {
             hintText: 'Title',
             onChanged: (value) {
               title = value;
-              titleController.text = value;
+              //  titleController.text = value;
               setState(() {});
             },
-
-
             textController: titleController,
           ),
           const SizedBox(
@@ -103,10 +85,10 @@ class _EditViewBodyState extends State<EditViewBody> {
               maxLines: 5000,
               onChanged: (value) {
                 subTitle = value;
-                contentController.text = value;
+                // contentController.text = value;
                 setState(() {});
               },
-              textController: contentController,
+              textController: subTitleController,
             ),
           ),
         ],
@@ -115,7 +97,7 @@ class _EditViewBodyState extends State<EditViewBody> {
   }
 
   void _updateNote() {
-    if (title == null||title!.isEmpty ) {
+    if (title == null || title!.isEmpty) {
       title = 'Untitled';
       titleController.text = title!;
     }

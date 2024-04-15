@@ -50,7 +50,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       },
                       onChanged: (value) {
                         title = value;
-                        titleController.text = value;
+                        //titleController.text = value;
                         setState(() {}); // Update UI when title changes
                       },
                     ),
@@ -75,7 +75,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         },
                         onChanged: (value) {
                           subTitle = value;
-                          subTitleController.text = value;
+                          //  subTitleController.text = value;
                           setState(() {}); // Update UI when subtitle changes
                         },
                         textController: subTitleController,
@@ -97,73 +97,62 @@ class _AddNoteFormState extends State<AddNoteForm> {
   PreferredSizeWidget _buildAppBar() {
     if (subTitle != null && subTitle!.isNotEmpty) {
       return AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(20),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-            ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Colors.white.withOpacity(0.05),
-              ),
-              child: IconButton(
-                icon: const Icon(
-                  Icons.check_outlined,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  if (title == null || title!.isEmpty) {
-                    title = 'Untitled';
-                    titleController.text = title!;
-                  }
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    if (title == null || title!.isEmpty) {
-                      title = 'Untitled';
-                      titleController.text = title!;
-                    }
-                    var noteModel = NoteModel(
-                      title: title!,
-                      subTitle: subTitle!,
-                      date: dateTimeFormat(dateTime: DateTime.now()),
-                      color: BlocProvider.of<AddNoteCubit>(context)
-                          .randomColor()
-                          .value,
-                    );
-                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                  }
-                },
-
-              ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.white.withOpacity(0.05),
             ),
+            child: IconButton(
+              icon: const Icon(
+                Icons.check_outlined,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                if (title == null || title!.isEmpty) {
+                  title = 'Untitled';
+                   titleController.text = title!;
+                }
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                  var noteModel = NoteModel(
+                    title: title!,
+                    subTitle: subTitle!,
+                    date: dateTimeFormat(dateTime: DateTime.now()),
+                    color: BlocProvider.of<AddNoteCubit>(context)
+                        .randomColor()
+                        .value,
+                  );
+                  BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                }
+              },
+            ),
+          ),
+          const SizedBox(
+            width: 10,
           ),
         ],
       );
     } else {
       return AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-            ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
           ),
         ),
       );

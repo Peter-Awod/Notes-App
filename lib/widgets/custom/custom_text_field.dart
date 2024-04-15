@@ -35,6 +35,7 @@ class CustomTextFormField extends StatelessWidget {
       cursorColor: kThemeColor,
       keyboardType: TextInputType.text,
       maxLines: maxLines,
+      textDirection: TextDirection.ltr,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: const TextStyle(
