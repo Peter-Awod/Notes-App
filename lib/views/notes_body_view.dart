@@ -24,21 +24,27 @@ class _NotesBodyViewState extends State<NotesBodyView> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 40,
-          ),
-          CustomAppBar(
-            title: 'Notes',
-            icon: Icons.search_outlined,
-            onPressed: () {},
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Expanded(child: NotesListViewBuilder()),
-        ],
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(image: AssetImage('assets/note5.png')),
+        ),
+        child: Column(
+          children: [
+
+            const SizedBox(
+              height: 40,
+            ),
+            CustomAppBar(
+              title: 'Notes',
+              icon: Icons.search_outlined,
+              onPressed: () {},
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Expanded(child: NotesListViewBuilder()),
+          ],
+        ),
       ),
     );
   }
