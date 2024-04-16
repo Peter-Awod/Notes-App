@@ -124,7 +124,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 }
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
-                  var noteModel = NoteModel(
+                  var noteModel = NoteModel(image: '',
                     title: title!,
                     subTitle: subTitle!,
                     date: dateTimeFormat(dateTime: DateTime.now()),
