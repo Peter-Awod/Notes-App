@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_cubit.dart';
@@ -5,6 +6,8 @@ import 'package:notes_app/cubit/add_note_cubit/add_note_states.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom/custom_text_field.dart';
 import 'package:notes_app/shared/components/date_format.dart';
+
+import '../images/images_list_view.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -34,57 +37,68 @@ class _AddNoteFormState extends State<AddNoteForm> {
         } else {
           return Scaffold(
             appBar: _buildAppBar(),
-            body: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Form(
-                key: formKey,
-                autovalidateMode: autovalidateMode,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextFormField(
-                      hintText: 'Title',
-                      textController: titleController,
-                      onSaved: (value) {
-                        title = value;
-                      },
-                      onChanged: (value) {
-                        title = value;
-                        //titleController.text = value;
-                        setState(() {}); // Update UI when title changes
-                      },
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      dateTimeFormat(
-                        dateTime: DateTime.now(),
-                      ),
-                      style: TextStyle(color: Colors.grey.shade600),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Expanded(
-                      child: CustomTextFormField(
-                        hintText: 'Start Typing',
-                        maxLines: 5000,
+            body: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    BlocProvider.of<AddNoteCubit>(context).noteImage,
+                  ),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Form(
+                  key: formKey,
+                  autovalidateMode: autovalidateMode,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTextFormField(
+                        hintText: 'Title',
+                        textController: titleController,
                         onSaved: (value) {
-                          subTitle = value;
+                          title = value;
                         },
                         onChanged: (value) {
-                          subTitle = value;
-                          //  subTitleController.text = value;
-                          setState(() {}); // Update UI when subtitle changes
+                          title = value;
+                          //titleController.text = value;
+                          setState(() {}); // Update UI when title changes
                         },
-                        textController: subTitleController,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        dateTimeFormat(
+                          dateTime: DateTime.now(),
+                        ),
+                        style: TextStyle(color: Colors.grey.shade600),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Expanded(
+                        child: CustomTextFormField(
+                          hintText: 'Start Typing',
+                          maxLines: 5000,
+                          onSaved: (value) {
+                            subTitle = value;
+                          },
+                          onChanged: (value) {
+                            subTitle = value;
+                            //  subTitleController.text = value;
+                            setState(() {}); // Update UI when subtitle changes
+                          },
+                          textController: subTitleController,
+                        ),
+                      ),
+                      const ImagesListView(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -120,11 +134,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
               onPressed: () {
                 if (title == null || title!.isEmpty) {
                   title = 'Untitled';
-                   titleController.text = title!;
+                  titleController.text = title!;
                 }
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
-                  var noteModel = NoteModel(image: '',
+                  var noteModel = NoteModel(
+                    image: BlocProvider.of<AddNoteCubit>(context).noteImage,
                     title: title!,
                     subTitle: subTitle!,
                     date: dateTimeFormat(dateTime: DateTime.now()),

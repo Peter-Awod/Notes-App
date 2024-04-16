@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 
@@ -20,10 +19,11 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
     return kColorsList[random.nextInt(kColorsList.length)];
 
   }
-  Color noteColor = const Color(0xffDBC2CF);
+  String noteImage =  'assets/img21.jpg';
   addNote(NoteModel noteModel) async {
     emit(AddNoteLoadingState());
     // noteModel.color=randomColor().value;
+    noteModel.image=noteImage;
     try {
       var notesBox = Hive.box<NoteModel>(kNotesBox);
       await notesBox.add(noteModel);

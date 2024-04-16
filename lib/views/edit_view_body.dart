@@ -35,63 +35,72 @@ class _EditViewBodyState extends State<EditViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 50,
-          ),
-          CustomAppBar(
-            title: 'Edit Note',
-            icon: Icons.check_outlined,
-            onPressed: () {
-              if ((title == null || title!.isEmpty) &&
-                  (subTitle == null || subTitle!.isEmpty)) {
-                // Show dialog
-                _showDeleteConfirmationDialog();
-              } else {
-                // Update note
-                _updateNote();
-              }
-            },
-          ),
-          const SizedBox(
-            height: 32,
-          ),
-          CustomTextFormField(
-            hintText: 'Title',
-            onChanged: (value) {
-              title = value;
-              //  titleController.text = value;
-              setState(() {});
-            },
-            textController: titleController,
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Text(
-            widget.noteModel.date,
-            style: TextStyle(color: Colors.grey.shade600),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Expanded(
-            child: CustomTextFormField(
-              hintText: 'Content',
-              maxLines: 5000,
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+
+          image: AssetImage(widget.noteModel.image),
+        fit: BoxFit.cover
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 50,
+            ),
+            CustomAppBar(
+              title: 'Edit Note',
+              icon: Icons.check_outlined,
+              onPressed: () {
+                if ((title == null || title!.isEmpty) &&
+                    (subTitle == null || subTitle!.isEmpty)) {
+                  // Show dialog
+                  _showDeleteConfirmationDialog();
+                } else {
+                  // Update note
+                  _updateNote();
+                }
+              },
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            CustomTextFormField(
+              hintText: 'Title',
               onChanged: (value) {
-                subTitle = value;
-                // contentController.text = value;
+                title = value;
+                //  titleController.text = value;
                 setState(() {});
               },
-              textController: subTitleController,
+              textController: titleController,
             ),
-          ),
-        ],
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              widget.noteModel.date,
+              style: TextStyle(color: Colors.grey.shade600),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Expanded(
+              child: CustomTextFormField(
+                hintText: 'Content',
+                maxLines: 5000,
+                onChanged: (value) {
+                  subTitle = value;
+                  // contentController.text = value;
+                  setState(() {});
+                },
+                textController: subTitleController,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

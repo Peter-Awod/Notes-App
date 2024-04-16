@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/shared/images.dart';
 
-import '../../shared/colors.dart';
-import 'colors_item.dart';
+import 'images_item.dart';
 
-class ColorListView extends StatefulWidget {
-  const ColorListView({super.key});
+class ImagesListView extends StatefulWidget {
+  const ImagesListView({super.key});
 
   @override
-  State<ColorListView> createState() => _ColorListViewState();
+  State<ImagesListView> createState() => _ImagesListViewState();
 }
 
-class _ColorListViewState extends State<ColorListView> {
+class _ImagesListViewState extends State<ImagesListView> {
   int currentIndex = 0;
 
 
@@ -20,23 +20,23 @@ class _ColorListViewState extends State<ColorListView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 60,
+      height: 100,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemCount: kColorsList.length,
+        itemCount: imagesList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.all(4.0),
           child: GestureDetector(
               onTap: () {
                 currentIndex = index;
-                BlocProvider.of<AddNoteCubit>(context).noteColor =
-                    kColorsList[index];
+                BlocProvider.of<AddNoteCubit>(context).noteImage =
+                    imagesList[index];
                 setState(() {});
               },
-              child: ColorItem(
+              child: ImageItem(
                 isSelected: index == currentIndex,
-                selectedColor: kColorsList[index],
+                selectedImage: imagesList[index],
               )),
         ),
       ),
