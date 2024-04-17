@@ -6,7 +6,7 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom/custom_text_field.dart';
 import 'package:notes_app/shared/components/date_format.dart';
 
-import '../images/images_list_view.dart';
+import '../images/add_note_images_list_view.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -92,7 +92,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                           textController: subTitleController,
                         ),
                       ),
-                      const ImagesListView(),
+                      const AddNoteImagesListView(),
                       const SizedBox(
                         height: 20,
                       ),

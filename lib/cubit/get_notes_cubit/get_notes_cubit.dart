@@ -10,6 +10,9 @@ class GetNotesCubit extends Cubit<GetNoteStates> {
   static GetNotesCubit get(context) => BlocProvider.of(context);
 
   List<NoteModel>?notes;
+  void changeImage(){
+    emit(NoteImageChangedState());
+  }
   getAllNotes() async {
     try {
       var notesBox = Hive.box<NoteModel>(kNotesBox);

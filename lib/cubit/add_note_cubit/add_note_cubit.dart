@@ -20,10 +20,8 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
 
   }
   String noteImage =  'assets/img21.jpg';
-  String changeImage(){
+  void changeImage(){
    emit(NoteImageChangedState());
-    return noteImage;
-
   }
   addNote(NoteModel noteModel) async {
     emit(AddNoteLoadingState());

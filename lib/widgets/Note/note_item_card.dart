@@ -38,7 +38,7 @@ class NoteCard extends StatelessWidget {
               // titleTextStyle: const TextStyle(color: Colors.white),
               // descTextStyle: const TextStyle(color: Colors.white),
 
-              title: 'Warning' ,
+              title: 'Warning',
               desc: 'Are you sure you want to delete the note',
               btnOk: Row(
                 children: [

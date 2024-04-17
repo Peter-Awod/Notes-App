@@ -3,6 +3,7 @@ import '../../models/note_model.dart';
  class GetNoteStates{}
 
 class GetNoteInitialState extends GetNoteStates{}
+class NoteImageChangedState extends GetNoteStates{}
 class GetNoteLoadingState extends GetNoteStates{}
 class GetNoteSuccessState extends GetNoteStates{
   final List<NoteModel>notesList;

@@ -2,10 +2,12 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/get_notes_cubit/get_notes_cubit.dart';
+import 'package:notes_app/cubit/get_notes_cubit/get_notes_states.dart';
 
 import '../models/note_model.dart';
 import '../widgets/custom/custom_app_bar.dart';
 import '../widgets/custom/custom_text_field.dart';
+import '../widgets/images/edit_note_images_list_view.dart';
 
 class EditViewBody extends StatefulWidget {
   const EditViewBody({
@@ -35,72 +37,80 @@ class _EditViewBodyState extends State<EditViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(widget.noteModel.image),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 50,
+    return BlocConsumer<GetNotesCubit, GetNoteStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(widget.noteModel.image),
+              fit: BoxFit.cover,
             ),
-            CustomAppBar(
-              title: 'Edit Note',
-              icon: Icons.check_outlined,
-              onPressed: () {
-                if ((title == null || title!.isEmpty) &&
-                    (subTitle == null || subTitle!.isEmpty)) {
-                  // Show dialog
-                  _showDeleteConfirmationDialog();
-                } else {
-                  // Update note
-                  _updateNote();
-                }
-              },
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                CustomAppBar(
+                  title: 'Edit Note',
+                  icon: Icons.check_outlined,
+                  onPressed: () {
+                    if ((title == null || title!.isEmpty) &&
+                        (subTitle == null || subTitle!.isEmpty)) {
+                      // Show dialog
+                      _showDeleteConfirmationDialog();
+                    } else {
+                      // Update note
+                      _updateNote();
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                CustomTextFormField(
+                  hintText: 'Title',
+                  onChanged: (value) {
+                    title = value;
+                    //  titleController.text = value;
+                    setState(() {});
+                  },
+                  textController: titleController,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  widget.noteModel.date,
+                  style: TextStyle(color: Colors.grey.shade600),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Expanded(
+                  child: CustomTextFormField(
+                    hintText: 'Content',
+                    maxLines: 5000,
+                    onChanged: (value) {
+                      subTitle = value;
+                      // contentController.text = value;
+                      setState(() {});
+                    },
+                    textController: subTitleController,
+                  ),
+                ),
+                EditNoteImagesListView(
+                  noteModel: widget.noteModel,
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 32,
-            ),
-            CustomTextFormField(
-              hintText: 'Title',
-              onChanged: (value) {
-                title = value;
-                //  titleController.text = value;
-                setState(() {});
-              },
-              textController: titleController,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(
-              widget.noteModel.date,
-              style: TextStyle(color: Colors.grey.shade600),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Expanded(
-              child: CustomTextFormField(
-                hintText: 'Content',
-                maxLines: 5000,
-                onChanged: (value) {
-                  subTitle = value;
-                  // contentController.text = value;
-                  setState(() {});
-                },
-                textController: subTitleController,
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
