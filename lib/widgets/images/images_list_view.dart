@@ -15,8 +15,6 @@ class ImagesListView extends StatefulWidget {
 class _ImagesListViewState extends State<ImagesListView> {
   int currentIndex = 0;
 
-
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,16 +26,18 @@ class _ImagesListViewState extends State<ImagesListView> {
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.all(4.0),
           child: GestureDetector(
-              onTap: () {
-                currentIndex = index;
-                BlocProvider.of<AddNoteCubit>(context).noteImage =
-                    imagesList[index];
-                setState(() {});
-              },
-              child: ImageItem(
-                isSelected: index == currentIndex,
-                selectedImage: imagesList[index],
-              )),
+            onTap: () {
+              currentIndex = index;
+              BlocProvider.of<AddNoteCubit>(context).noteImage =
+                  imagesList[index];
+              BlocProvider.of<AddNoteCubit>(context).changeImage();
+              setState(() {});
+            },
+            child: ImageItem(
+              isSelected: index == currentIndex,
+              selectedImage: imagesList[index],
+            ),
+          ),
         ),
       ),
     );

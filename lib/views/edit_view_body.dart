@@ -38,9 +38,8 @@ class _EditViewBodyState extends State<EditViewBody> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-
           image: AssetImage(widget.noteModel.image),
-        fit: BoxFit.cover
+          fit: BoxFit.cover,
         ),
       ),
       child: Padding(
