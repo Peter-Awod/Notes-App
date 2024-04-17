@@ -31,11 +31,11 @@ class CustomTextFormField extends StatelessWidget {
         }
       },
       controller: textController,
-      style: const TextStyle(color: Colors.white),
+      style:  TextStyle(color: Colors.grey[600]),
       cursorColor: kThemeColor,
       keyboardType: TextInputType.text,
       maxLines: maxLines,
-      textDirection: TextDirection.ltr,
+
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: const TextStyle(

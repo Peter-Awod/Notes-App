@@ -34,10 +34,12 @@ class NoteCard extends StatelessWidget {
               animType: AnimType.scale,
 
               headerAnimationLoop: false,
+              // dialogBackgroundColor: kThemeColor,
+              // titleTextStyle: const TextStyle(color: Colors.white),
+              // descTextStyle: const TextStyle(color: Colors.white),
 
-              title: 'Warning',
+              title: 'Warning' ,
               desc: 'Are you sure you want to delete the note',
-
               btnOk: Row(
                 children: [
                   ElevatedButton(
