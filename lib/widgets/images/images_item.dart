@@ -32,8 +32,9 @@ class ImageItem extends StatelessWidget {
         : Container(
             width: 60,
             decoration: BoxDecoration(
-
+              border: Border.all(color: Colors.white),
               borderRadius: BorderRadius.circular(8),
+
               image: DecorationImage(fit: BoxFit.cover,
                 image: AssetImage(selectedImage),
               ),

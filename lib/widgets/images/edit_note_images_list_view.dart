@@ -22,26 +22,27 @@ class _EditNoteImagesListViewState extends State<EditNoteImagesListView> {
   currentIndex=imagesList.indexOf(widget.noteModel.image);
     super.initState();
   }
+ List<String>reversedImagesList=imagesList.reversed.toList();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 100,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemCount: imagesList.length,
+        itemCount: reversedImagesList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.all(4.0),
           child: GestureDetector(
             onTap: () {
               currentIndex = index;
-              widget.noteModel.image=imagesList[index];
+              widget.noteModel.image=reversedImagesList[index];
              BlocProvider.of<GetNotesCubit>(context).changeImage();
               setState(() {});
             },
             child: ImageItem(
               isSelected: index == currentIndex,
-              selectedImage: imagesList[index],
+              selectedImage: reversedImagesList[index],
             ),
           ),
         ),

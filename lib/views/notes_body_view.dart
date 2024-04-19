@@ -31,9 +31,7 @@ class _NotesBodyViewState extends State<NotesBodyView> {
         child: Column(
           children: [
 
-            const SizedBox(
-              height: 40,
-            ),
+
             CustomAppBar(
               title: 'Notes',
               icon: Icons.search_outlined,

@@ -1,5 +1,4 @@
 List<String> imagesList = [
-  'assets/img21.jpg',
   'assets/img1.jpg',
   'assets/img2.jpg',
   'assets/img3.jpg',
@@ -20,4 +19,5 @@ List<String> imagesList = [
   'assets/img18.jpg',
   'assets/img19.jpg',
   'assets/img20.jpg',
+  'assets/img21.jpg',
 ];
