@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_app/cubit/get_notes_cubit/get_notes_cubit.dart';
+import 'package:notes_app/generated/l10n.dart';
 import 'package:notes_app/shared/bloc_observer.dart';
 import 'package:notes_app/shared/constants.dart';
 
@@ -31,6 +33,14 @@ class NotesApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         debugShowCheckedModeBanner: false,
         darkTheme: ThemeData(
           scaffoldBackgroundColor: Colors.black,
@@ -46,4 +56,3 @@ class NotesApp extends StatelessWidget {
     );
   }
 }
-
