@@ -22,6 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "homeTitle": MessageLookupByLibrary.simpleMessage("Notes")
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "editTitle": MessageLookupByLibrary.simpleMessage("Edit Note"),
+        "hintSubtitle": MessageLookupByLibrary.simpleMessage("Start Typing"),
+        "hintTitle": MessageLookupByLibrary.simpleMessage("Title"),
+        "homeTitle": MessageLookupByLibrary.simpleMessage("Notes"),
+        "warning": MessageLookupByLibrary.simpleMessage("Warning"),
+        "warningMessage": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete the note")
       };
 }

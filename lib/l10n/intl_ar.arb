@@ -1,1 +1,10 @@
-{}
+{
+  "homeTitle": "ملاحظات",
+  "editTitle": "تعديل الملاحظة",
+  "warning": "تحذير",
+  "cancel": "إلغاء",
+  "delete": "حذف",
+  "warningMessage": "هل أنت متأكد أنك تريد حذف الملاحظة؟",
+  "hintTitle": "العنوان",
+  "hintSubtitle": "ابدأ بالكتابة"
+}

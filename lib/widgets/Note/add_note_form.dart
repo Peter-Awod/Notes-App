@@ -6,6 +6,7 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom/custom_text_field.dart';
 import 'package:notes_app/shared/components/date_format.dart';
 
+import '../../generated/l10n.dart';
 import '../images/add_note_images_list_view.dart';
 
 class AddNoteForm extends StatefulWidget {
@@ -54,7 +55,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomTextFormField(
-                        hintText: 'Title',
+                        hintText: S.of(context).hintTitle,
                         textController: titleController,
                         onSaved: (value) {
                           title = value;
@@ -79,7 +80,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       ),
                       Expanded(
                         child: CustomTextFormField(
-                          hintText: 'Start Typing',
+                          hintText: S.of(context).hintSubtitle,
                           maxLines: 5000,
                           onSaved: (value) {
                             subTitle = value;

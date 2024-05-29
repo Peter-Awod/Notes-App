@@ -21,5 +21,15 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "delete": MessageLookupByLibrary.simpleMessage("حذف"),
+        "editTitle": MessageLookupByLibrary.simpleMessage("تعديل الملاحظة"),
+        "hintSubtitle": MessageLookupByLibrary.simpleMessage("ابدأ بالكتابة"),
+        "hintTitle": MessageLookupByLibrary.simpleMessage("العنوان"),
+        "homeTitle": MessageLookupByLibrary.simpleMessage("ملاحظات"),
+        "warning": MessageLookupByLibrary.simpleMessage("تحذير"),
+        "warningMessage": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد أنك تريد حذف الملاحظة؟")
+      };
 }

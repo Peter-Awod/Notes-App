@@ -59,6 +59,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Edit Note`
+  String get editTitle {
+    return Intl.message(
+      'Edit Note',
+      name: 'editTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warning`
+  String get warning {
+    return Intl.message(
+      'Warning',
+      name: 'warning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete the note`
+  String get warningMessage {
+    return Intl.message(
+      'Are you sure you want to delete the note',
+      name: 'warningMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get hintTitle {
+    return Intl.message(
+      'Title',
+      name: 'hintTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Typing`
+  String get hintSubtitle {
+    return Intl.message(
+      'Start Typing',
+      name: 'hintSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -6,6 +6,7 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_view.dart';
 
 import '../../cubit/get_notes_cubit/get_notes_cubit.dart';
+import '../../generated/l10n.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({super.key, required this.noteModel});
@@ -38,19 +39,19 @@ class NoteCard extends StatelessWidget {
               // titleTextStyle: const TextStyle(color: Colors.white),
               // descTextStyle: const TextStyle(color: Colors.white),
 
-              title: 'Warning',
-              desc: 'Are you sure you want to delete the note',
+              title:  S.of(context).warning,
+              desc:  S.of(context).warningMessage,
               btnOk: Row(
                 children: [
                   ElevatedButton(
-                    child: const Text('Cancel'),
+                    child: Text( S.of(context).cancel),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                   ),
                   const Spacer(),
                   ElevatedButton(
-                    child: const Text('Delete'),
+                    child: Text( S.of(context).delete),
                     onPressed: () {
                       noteModel.delete();
                       Navigator.of(context).pop();

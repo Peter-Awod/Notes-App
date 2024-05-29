@@ -1,3 +1,10 @@
 {
-  "homeTitle": "Notes"
+  "homeTitle": "Notes",
+  "editTitle": "Edit Note",
+  "warning": "Warning",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "warningMessage": "Are you sure you want to delete the note",
+  "hintTitle": "Title",
+  "hintSubtitle": "Start Typing"
 }

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:notes_app/cubit/get_notes_cubit/get_notes_cubit.dart';
-import 'package:notes_app/generated/l10n.dart';
-import 'package:notes_app/shared/bloc_observer.dart';
-import 'package:notes_app/shared/constants.dart';
 
+
+
+import 'cubit/get_notes_cubit/get_notes_cubit.dart';
+import 'generated/l10n.dart';
 import 'models/note_model.dart';
+import 'shared/bloc_observer.dart';
+import 'shared/constants.dart';
 import 'views/notes_view.dart';
 
 void main() async {

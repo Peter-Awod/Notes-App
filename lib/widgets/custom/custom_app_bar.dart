@@ -16,12 +16,13 @@ class CustomAppBar extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(fontSize: 32, color: Colors.white),
+          style:  TextStyle(fontSize: 32, color: Colors.grey[600]),
         ),
        const  Spacer(),
         CustomIconButton(
           icon: icon,
           onPressed: onPressed,
+
         ),
       ],
     );

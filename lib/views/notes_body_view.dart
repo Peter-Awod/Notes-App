@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/get_notes_cubit/get_notes_cubit.dart';
 import 'package:notes_app/widgets/custom/custom_app_bar.dart';
 
+import '../generated/l10n.dart';
 import 'notes_list_view_builder.dart';
 
 class NotesBodyView extends StatefulWidget {
@@ -33,7 +34,7 @@ class _NotesBodyViewState extends State<NotesBodyView> {
 
 
             CustomAppBar(
-              title: 'Notes',
+              title:  S.of(context).homeTitle,
               icon: Icons.search_outlined,
               onPressed: () {},
             ),

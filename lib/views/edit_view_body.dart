@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/get_notes_cubit/get_notes_cubit.dart';
 import 'package:notes_app/cubit/get_notes_cubit/get_notes_states.dart';
 
+import '../generated/l10n.dart';
 import '../models/note_model.dart';
 import '../widgets/custom/custom_app_bar.dart';
 import '../widgets/custom/custom_text_field.dart';
@@ -56,7 +57,7 @@ class _EditViewBodyState extends State<EditViewBody> {
                   height: 50,
                 ),
                 CustomAppBar(
-                  title: 'Edit Note',
+                  title: S.of(context).editTitle,
                   icon: Icons.check_outlined,
                   onPressed: () {
                     if ((title == null || title!.isEmpty) &&
@@ -73,7 +74,7 @@ class _EditViewBodyState extends State<EditViewBody> {
                   height: 32,
                 ),
                 CustomTextFormField(
-                  hintText: 'Title',
+                  hintText: S.of(context).hintTitle,
                   onChanged: (value) {
                     title = value;
                     //  titleController.text = value;
@@ -93,7 +94,7 @@ class _EditViewBodyState extends State<EditViewBody> {
                 ),
                 Expanded(
                   child: CustomTextFormField(
-                    hintText: 'Content',
+                    hintText: S.of(context).hintSubtitle,
                     maxLines: 5000,
                     onChanged: (value) {
                       subTitle = value;
@@ -136,19 +137,19 @@ class _EditViewBodyState extends State<EditViewBody> {
       dialogType: DialogType.warning,
       animType: AnimType.scale,
       headerAnimationLoop: false,
-      title: 'Warning',
-      desc: 'Are you sure you want to delete the note?',
+      title:  S.of(context).warning,
+      desc:  S.of(context).warningMessage,
       btnOk: Row(
         children: [
           ElevatedButton(
-            child: const Text('Cancel'),
+            child:  Text( S.of(context).cancel),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           const Spacer(),
           ElevatedButton(
-            child: const Text('Delete'),
+            child:  Text( S.of(context).delete),
             onPressed: () {
               widget.noteModel.delete();
               Navigator.of(context).pop();
