@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
-
 import 'cubit/get_notes_cubit/get_notes_cubit.dart';
+import 'cubit/language_cubit/language_cubit.dart';
 import 'generated/l10n.dart';
 import 'models/note_model.dart';
 import 'shared/bloc_observer.dart';
@@ -25,35 +24,41 @@ void main() async {
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => GetNotesCubit(),
-        )
-      ],
-      child: MaterialApp(
-        locale: const Locale('en'),
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        debugShowCheckedModeBanner: false,
-        darkTheme: ThemeData(
-          scaffoldBackgroundColor: Colors.black,
-          appBarTheme: const AppBarTheme(
-            color: Colors.transparent,
-            elevation: 0,
-          ),
-          fontFamily: 'Poppins',
         ),
-        themeMode: ThemeMode.dark,
-        home: const NotesView(),
+        BlocProvider(
+          create: (context) => LanguageCubit(),
+        ),
+      ],
+      child: BlocBuilder<LanguageCubit, Locale>(
+        builder: (context, locale) {
+          return MaterialApp(
+            locale: locale,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            debugShowCheckedModeBanner: false,
+            darkTheme: ThemeData(
+              scaffoldBackgroundColor: Colors.black,
+              appBarTheme: const AppBarTheme(
+                color: Colors.transparent,
+                elevation: 0,
+              ),
+              fontFamily: 'Poppins',
+            ),
+            themeMode: ThemeMode.dark,
+            home: const NotesView(),
+          );
+        },
       ),
     );
   }

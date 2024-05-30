@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/shared/constants.dart';
 
 import '../widgets/Note/add_note_screen.dart';
 import 'notes_body_view.dart';
@@ -11,8 +10,8 @@ class NotesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white,
+        iconTheme: IconThemeData(
+          color: Colors.grey[600],
           size: 30,
         ),
       ),
@@ -20,6 +19,7 @@ class NotesView extends StatelessWidget {
       //   padding: const EdgeInsetsDirectional.only(top: 32, bottom: 16),
       //   child: Drawer(
       //     width: 200,
+      //     backgroundColor: kThemeColor,
       //     child: ListView(
       //       padding: EdgeInsets.zero,
       //       children: [
@@ -36,13 +36,23 @@ class NotesView extends StatelessWidget {
       //           ),
       //         ),
       //         ListTile(
-      //           title: const Text('Change Theme'),
+      //           title: const Text(
+      //             'Change Theme',
+      //             style: TextStyle(
+      //               color: Colors.white,
+      //             ),
+      //           ),
       //           onTap: () {
       //             // Handle changing theme
       //           },
       //         ),
       //         ListTile(
-      //           title: const Text('Change Language'),
+      //           title: const Text(
+      //             'Change Language',
+      //             style: TextStyle(
+      //               color: Colors.white,
+      //             ),
+      //           ),
       //           onTap: () {
       //             // Handle changing language
       //           },
@@ -61,17 +71,6 @@ class NotesView extends StatelessWidget {
             context,
             MaterialPageRoute(builder: (context) => const AddNewNoteScreen()),
           );
-          // showModalBottomSheet(
-          //   isScrollControlled: true,
-          //   backgroundColor: kThemeColor,
-          //   shape: OutlineInputBorder(
-          //     borderRadius: BorderRadius.circular(8),
-          //   ),
-          //   context: context,
-          //   builder: (context) {
-          //     return const AddNewNote();
-          //   },
-          // );
         },
         child: const Icon(
           Icons.add_outlined,
