@@ -33,7 +33,8 @@ class CustomTextFormField extends StatelessWidget {
       controller: textController,
       style:  TextStyle(color: Colors.grey[600]),
       cursorColor: kThemeColor,
-      keyboardType: TextInputType.text,
+      keyboardType: TextInputType.multiline,
+      textInputAction: TextInputAction.newline,
       maxLines: maxLines,
 
       decoration: InputDecoration(
